@@ -5,13 +5,6 @@
 # 4. Total number of votes each candidate won
 # 5. Winner of the election based on popular vote
 
-# Import the datetime class from the datetime module
-import datetime as dt
-# Use the now() attribute on the datetime class to get the present time
-now = dt.datetime.now()
-# Print the present time
-print("The time right now is", now)
-
 import csv
 import os
 # Assign a variable for the file to load and the path
@@ -20,26 +13,56 @@ file_to_load = os.path.join("Resources", "election_results.csv")
 # Assign a variable to save the file to a path
 file_to_save = os.path.join('analysis', 'election_analysis.txt')
 
+# 1. Initialize a total vote counter
+total_votes = 0
+
+# Declare Candidate options and candidate votes
+candidate_options = []
+candidate_votes = {}
+
 # Open the election results and read the file
 with open(file_to_load) as election_data:
     file_reader = csv.reader(election_data)
 
-    # Print the header row
+    # Read the header row
     headers = next(file_reader)
-    print(headers)
 
     # Print each row in the CSV file
     for row in file_reader:
-        print(row)
+        
+        # 2. Add to the total vote count
+        total_votes += 1
+
+        # Print candidate name from each row
+        candidate_name = row[2]
+
+        # If the candidate does not match any existing candidate
+        if candidate_name not in candidate_options:
+            # Add candidate name to candidate list
+            candidate_options.append(candidate_name)
+            # Begin tracking candidate's vote count
+            candidate_votes[candidate_name] = 0
+
+         # Add vote to candidate's count
+        candidate_votes[candidate_name] += 1
+
+    # Determine percentage of votes for each candidate by looping through counts
+    # Iterate through candidate list
+    for candidate_name in candidate_votes:
+        # Retrieve vote count of candidate
+        votes = candidate_votes[candidate_name]
+        # Calculate percentage of votes
+        vote_percentage = float(votes) / float(total_votes) * 100
+        # Print the candidate name and percentage of votes
+        print(f'{candidate_name}: received {vote_percentage:.1f}% of the vote')
 
 
+# Print candidate vote dictionary
+print(candidate_votes)
 
 
 # Close the file
 election_data.close()
-
-# Create a filename variable to a direct or indirect path to the file
-file_to_save = os.path.join('analysis', 'election_analysis.txt')
 
 # Using with statement, open file as a text file
 with open(file_to_save, 'w') as txt_file:
