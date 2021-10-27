@@ -41,7 +41,7 @@ This election audit was performed in order to succintly provide an analysis of t
 
   ![Q4 2](https://user-images.githubusercontent.com/91569387/139003846-5991c47d-5de1-4f5f-9ccb-ac7f68da6ee5.PNG)
   
-  - With a total of 272,892 votes and 73.8%, Diana DeGette won the election. The following code is used to determine the winning candidate:
+- With a total of 272,892 votes and 73.8%, Diana DeGette won the election. The following code is used to determine the winning candidate:
     
   ![Q5](https://user-images.githubusercontent.com/91569387/139004232-2ddb3fd3-b7ca-48c5-9a1f-3b3ef7d86e97.PNG)
   
